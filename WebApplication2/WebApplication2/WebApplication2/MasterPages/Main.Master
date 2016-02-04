@@ -1,0 +1,225 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="WebApplication2.Main" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Bootstrap Admin Template : Binary Admin</title>
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="../assets/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+    <link href="../assets/ValidationEngine.css" rel="stylesheet" />
+    <script src="../assets/jquery.min.js"></script>
+   <script src="../chkValidationData/jquery.validationEngine-en.js"></script>
+    <script src="../chkValidationData/jquery.validationEngine.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#contactForm").validationEngine('attach', { promptPosition: "topRight" });
+        });
+    </script>
+    <script src="../assets/jquery-1.12.0.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../chkValidationData/jquery.validationEngine-en.js"></script>
+    <script src="../chkValidationData/jquery.validationEngine.js"></script>
+  <%--  <script src="../chkValidationData/jquery.validationEngine-en.js"></script>
+    <script src="../chkValidationData/jquery.validationEngine.js"></script>--%>
+    <asp:ContentPlaceHolder ID="contentHeader" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body style="background-color: black">
+    <form runat="server" id="contactForm">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <!-- Bootstrap Modal LoginRequired -->
+        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="modal-content" style="width: 60%; margin-left: 25%; margin-right: 25%">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">
+                                    <asp:Label ID="lblModalTitle" runat="server" Text="Login Authentication Required...!"></asp:Label></h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                                    <asp:TextBox ID="txtLoginName" runat="server" CssClass="form-control input-lg text-box text-danger validate[required]" placeholder="Your Username"
+                                        Width="290px" TabIndex="1"></asp:TextBox>
+
+                                </div>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                    <asp:TextBox ID="txtLoginPassword" TextMode="Password" runat="server" CssClass="form-control input-lg validate[required]" placeholder="Your Password"
+                                        Width="290px" TabIndex="1"></asp:TextBox>
+                                </div>
+
+                                <hr />
+                                <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-success" Text="Login Now" OnClick="btnLogin_Click" />
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+        <!-- Bootstrap Modal End -->
+
+        <!-- Bootstrap Modal Dialog -->
+        <div class="modal fade" id="myModa2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close btn btn-success" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">
+                                    <asp:Label ID="Label1" runat="server" Text=""></asp:Label></h4>
+                            </div>
+                            <div class="modal-body">
+                                <asp:Label ID="lblModalBody" runat="server" Text=""></asp:Label>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+        <!-- Bootstrap Modal End -->
+
+
+        <div id="wrapper">
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <img src="../assets/img/fyplogo.jpg" style="width: 243px; height: 52px" />
+                </div>
+                <div style="color: white; padding: 15px 30px 0px 20px; float: right; font-size: 16px;">
+                    <asp:Label ID="lblLastAccess" runat="server" Text="Last access : 30 May 2014"></asp:Label>
+                    &nbsp; <a href="../Forms/Login.aspx" class="btn btn-danger square-btn-adjust">Logout</a>
+                    <div style="padding-top: -10px; padding-left: 10px; float: right; height: 29px; width: 35px;">
+                        <asp:ImageButton ID="EditProfile" runat="server" ImageUrl="~/assets/userupdateicon.png" Width="35px" Height="29px" OnClick="EditProfile_Click" />
+                    </div>
+                </div>
+            </nav>
+            <!-- /. NAV TOP  -->
+            <nav class="navbar-default navbar-side" role="navigation" style="width: 235px; margin-bottom: 5px">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                        <li class="align:left" style="height: 90px; width: 229px; margin-top: 5px; margin-left: 10px; top: 1px; left: -4px;">
+
+                            <asp:Image ID="UserImg" ImageUrl="~/assets/img/find_user.png" runat="server" OnLoad="Image1_Load" Height="80px" Width="90px" />
+                            &nbsp;<asp:Label ID="lblLoginas" runat="server" Text="Login Title" ForeColor="White" Font-Size="Larger"></asp:Label>
+
+                        </li>
+
+
+                        <li>
+                            <a href="frmChartOfAccounts.aspx"><i class="fa fa-dashboard fa-3x"></i>Chart Of Accounts</a>
+                        </li>
+                        <li>
+                            <a href="frmCustomerCenter.aspx"><i class="fa fa-desktop fa-3x"></i>Customer Center</a>
+                        </li>
+                        <li>
+                            <a href="frmVendorCenter.aspx"><i class="fa fa-desktop fa-3x"></i>Vendor Center</a>
+                        </li>
+                        <li>
+                            <a href="frmAccountsHierarchy.aspx"><i class="fa fa-qrcode fa-3x"></i>Acounts Management</a>
+                        </li>
+                        <li>
+                            <a href="frmJournalVoucher.aspx"><i class="fa fa-bar-chart-o fa-3x"></i>Journal Voucher</a>
+                        </li>
+                        <li>
+                            <a href="frmCashBook.aspx"><i class="fa fa-table fa-3x"></i>Cash Book</a>
+                        </li>
+                        <li>
+                            <a href="frmBankBook.aspx"><i class="fa fa-table fa-3x"></i>Bank Book</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap fa-3x"></i>Report Management<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="frmSearchVoucher.aspx">Ledger</a>
+                                </li>
+                                <li>
+                                    <a href="#">trial Balance</a>
+                                </li>
+                                <li>
+                                    <a href="#">Income Statement</a>
+                                </li>
+                                <li>
+                                    <a href="#">Balance Sheet</a>
+                                </li>
+                                <li>
+                                    <a href="frmJvReport.aspx">JV Report</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="Registeration.aspx"><i class="fa fa-edit fa-3x"></i>Registration </a>
+                        </li>
+                        <li>
+                            <a href="Login.aspx"><i class="fa fa-bolt fa-3x"></i>Login</a>
+                        </li>
+                        <li>
+                            <a href="changepasswordinside.aspx"><i class="fa fa-laptop fa-3x"></i>Change Password</a>
+                        </li>
+
+
+                    </ul>
+
+
+                </div>
+
+            </nav>
+            <!-- /. NAV SIDE  -->
+            <div id="page-wrapper" style="padding-left: 0px; height: 500px">
+                <div id="page-inner" style="height: 500px">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <asp:ContentPlaceHolder ID="Container" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                    <!-- /. ROW  -->
+                    <hr />
+
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+            </div>
+            <strong>Copyright &copy; <a href="http://www.smiu.edu.pk">SMIU</a>.</strong> All rights reserved.
+        </footer>
+
+    </form>
+  <%--  <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="../assets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="../assets/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="../assets/js/custom.js"></script>--%>
+
+
+</body>
+</html>
